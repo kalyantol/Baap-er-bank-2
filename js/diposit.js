@@ -1,9 +1,7 @@
+
+
 document.getElementById('btn-diposit').addEventListener('click', function(){
-    const dipositAmount = document.getElementById('diposit-text');
-    const newDipositAmountString = dipositAmount.value;    
-    const newDipositAmount = parseFloat(newDipositAmountString);  
-    
-    dipositAmount.value = '';
+    const newDipositAmount = getInputFiledAmoutById('diposit-text');
 
     if(isNaN(newDipositAmount)){
         alert('Please Enter Valid Amount');
@@ -14,22 +12,14 @@ document.getElementById('btn-diposit').addEventListener('click', function(){
         alert('Please Enter Valid Amount');
         return;
     }
+    const previousAmount = getPreviousAmounById('diposit-total');
 
-    const dipositTotal = document.getElementById('diposit-total');
-    const previousDipositTotalString = dipositTotal.innerText;
-    const previousDipositTotalText = parseFloat(previousDipositTotalString);
+    const totalDipositAmount = previousAmount + newDipositAmount;
 
-    const currentDipositTotal = previousDipositTotalText + newDipositAmount;   
-    dipositTotal.innerText = currentDipositTotal;
+   setElementTextById('diposit-total', totalDipositAmount);
 
-    const balanceTotal = document.getElementById('balance-total');
-    const previousBalanceTotalString = balanceTotal.innerText;
-    const previousBalanceTotal = parseFloat(previousBalanceTotalString);
-    
-    const currentBalanceTotal = newDipositAmount + previousBalanceTotal;
-    balanceTotal.innerText = currentBalanceTotal;
+   const previousBalenceAmount = getPreviousAmounById('balance-total');
+   const totalBalanceAmount = previousBalenceAmount + newDipositAmount;
 
-    
-
+   setElementTextById('balance-total', totalBalanceAmount);
 })
-

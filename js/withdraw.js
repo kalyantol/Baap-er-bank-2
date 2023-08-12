@@ -1,40 +1,25 @@
-document.getElementById('btn-withdraw').addEventListener('click', function(){    
-    const withdrawAmount = document.getElementById('withdraw-text');    
-    const newWithdrawAmountString = withdrawAmount.value;
-    const newWithdrawAmount = parseFloat(newWithdrawAmountString);
+document.getElementById('btn-withdraw').addEventListener('click', function(){
 
-    withdrawAmount.value = '';
+   
+    newWithdrawAmount = getInputFiledAmoutById('withdraw-text');
 
     if(isNaN(newWithdrawAmount)){
-        alert('Please enter valid amount');
+        alert('Please Enter Valid Amount');
         return;
     }
 
     if(newWithdrawAmount < 1){
-        alert('Please enter valid amount');
+        alert('Please Enter Valid Amount');
         return;
     }
 
-    const withrawTotal = document.getElementById('withdraw-total');
-    const previousWithdrawTotalString = withrawTotal.innerText;    
-    const previousWithdrawTotalTest = parseFloat(previousWithdrawTotalString);
+    totalWithdraw = getPreviousAmounById('withdraw-total');
     
-    const currentWithdrawTotal = previousWithdrawTotalTest + newWithdrawAmount;
-    withrawTotal.innerText = currentWithdrawTotal;
+    totalWithdrawAmount = totalWithdraw + newWithdrawAmount;
 
-    const balanceTotal = document.getElementById('balance-total');
-    const previousBalanceTotalString = balanceTotal.innerText;
-    const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+    setElementTextById('withdraw-total', totalWithdrawAmount);
+    previousBalence = getPreviousAmounById('balance-total');
 
-    if(newWithdrawAmount > previousBalanceTotal){
-        alert('Insufficent Balance');
-        return;
-    }
-    
-    const currentBalanceTotal = previousBalanceTotal - newWithdrawAmount;
-
-    balanceTotal.innerText = currentBalanceTotal;
-
-    
-    
+    newBalence = previousBalence - newWithdrawAmount;
+    setElementTextById('balance-total', newBalence);
 })
